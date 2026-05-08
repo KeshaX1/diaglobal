@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dia Global - &#304;leti&#351;im</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%234CAF50'/><text x='50' y='60' font-size='60' text-anchor='middle' fill='white' font-weight='bold'>D</text></svg>">
+</head>
+<body class="inner-page contact-page" data-page-id="contact">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo home-logo" aria-label="Dia Global home">
+                <span class="logo-video-frame" aria-hidden="true">
+                    <img class="logo-video" src="logo/logo.jpeg" alt="">
+                </span>
+            </a>
+            <div class="nav-actions">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Ana Sayfa</a></li>
+                    <li><a href="hakkimizda.html" class="nav-link">Hakk&#305;m&#305;zda</a></li>
+                    <li class="nav-item-dropdown">
+                        <a href="hizmetler.html" class="nav-link">Hizmetler</a>
+                        <div class="nav-dropdown" aria-label="Hizmet alt men&uuml;s&uuml;">
+                            <a href="hizmetler.html#ihracat-cozumleri" class="nav-dropdown-link">&#304;hracat &Ccedil;&ouml;z&uuml;mleri</a>
+                            <a href="hizmetler.html#ithalat-cozumleri" class="nav-dropdown-link">&#304;thalat &Ccedil;&ouml;z&uuml;mleri</a>
+                            <a href="hizmetler.html#gumrukleme-ve-lojistik" class="nav-dropdown-link">G&uuml;mr&uuml;kleme ve Lojistik</a>
+                            <a href="hizmetler.html#urun-ve-tedarik-yonetimi" class="nav-dropdown-link">&Uuml;r&uuml;n &amp; Tedarik Y&ouml;netimi</a>
+                        </div>
+                    </li>
+                    <li><a href="iletisim.html" class="nav-link current">Bize Ula&#351;&#305;n</a></li>
+                </ul>
+                <div class="language-switcher" aria-label="Language switcher">
+                    <button type="button" class="language-option active" data-lang-option="tr" aria-pressed="true">TR</button>
+                    <span class="language-divider">/</span>
+                    <button type="button" class="language-option" data-lang-option="en" aria-pressed="false">EN</button>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div id="contact-map" class="contact-map contact-hero-map" aria-label="Dia Global konum haritas&#305;"></div>
+    </section>
+
+    <section class="contact">
+        <div class="container">
+            <div class="contact-form-layout">
+                <div class="contact-form-card">
+                    <span class="page-kicker">&#304;leti&#351;im Formu</span>
+                    <h3>Bilgilerinizi B&#305;rak&#305;n</h3>
+                    <p class="contact-form-intro">Talebinizi yaz&#305;n, ekibimiz size en k&#305;sa s&uuml;rede geri d&ouml;n&uuml;&#351; yaps&#305;n. Form g&ouml;nderimi i&ccedil;in KVKK ayd&#305;nlatma metnini okuyup onaylaman&#305;z gerekir.</p>
+
+                    <form class="contact-form" data-contact-form="true">
+                        <div class="form-row">
+                            <label class="form-field">
+                                <span>Ad Soyad</span>
+                                <input type="text" name="name" placeholder="Ad&#305;n&#305;z Soyad&#305;n&#305;z" required disabled>
+                            </label>
+                            <label class="form-field">
+                                <span>E-posta</span>
+                                <input type="email" name="email" placeholder="ornek@eposta.com" required disabled>
+                            </label>
+                        </div>
+
+                        <div class="form-row">
+                            <label class="form-field">
+                                <span class="form-label-row">
+                                    <span class="phone-label-text">Telefon</span>
+                                    <span class="form-optional-note">(Opsiyonel)</span>
+                                </span>
+                                <input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" disabled>
+                            </label>
+                            <label class="form-field">
+                                <span>Konu</span>
+                                <input type="text" name="subject" placeholder="Talep konusu" required disabled>
+                            </label>
+                        </div>
+
+                        <label class="form-field">
+                            <span>Mesaj&#305;n&#305;z</span>
+                            <textarea name="message" placeholder="Talebinizi veya ihtiyac&#305;n&#305;z&#305; detayland&#305;rabilirsiniz." required disabled></textarea>
+                        </label>
+
+                        <label class="kvkk-inline-note kvkk-inline-consent">
+                            <input type="checkbox" data-kvkk-consent-check="true">
+                            <span><a href="kvkk-aydinlatma-metni.html" class="kvkk-inline-consent-link">Ki&#351;isel Verilerin Korunmas&#305; Kanununu</a> <span class="kvkk-inline-consent-text">okudum ve kabul ediyorum.</span></span>
+                        </label>
+
+                        <div class="contact-form-actions">
+                            <button type="submit" class="btn btn-primary" disabled>G&ouml;nder</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="contact-details">
+                <h2 class="section-title">&#304;leti&#351;im Bilgileri</h2>
+                <p class="section-subtitle">Bize ula&#351;&#305;n, sorular&#305;n&#305;z&#305; cevaplamaktan memnuniyet duyar&#305;z</p>
+
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>&#128205; Adres</h3>
+                        <p>&Ccedil;ayi&ccedil;i Mah. Y&#305;lmaz Cad. No: 33B D: 7<br>Sapanca, Sakarya<br>T&uuml;rkiye</p>
+                    </div>
+                    <div class="contact-info">
+                        <h3>&#128222; Telefon</h3>
+                        <p><a href="tel:+905411049477">+90 (541) 104 94 77</a><br><a href="tel:+905411049477">+90 541 104 94 77</a></p>
+                    </div>
+                    <div class="contact-info">
+                        <h3>&#9993; E-posta</h3>
+                        <p><a href="mailto:info@diaglobals.com">info@diaglobals.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer home-reference-footer">
+        <div class="home-reference-footer-shell">
+            <div class="home-reference-footer-panel">
+                <div class="home-reference-footer-grid">
+                    <div class="home-reference-footer-column">
+                        <h4 data-i18n="footer.corporateTitle">Kurumsal</h4>
+                        <a href="index.html" data-i18n="footer.linkHome">Ana Sayfa</a>
+                        <a href="hakkimizda.html" data-i18n="footer.linkAbout">Hakk&#305;m&#305;zda</a>
+                        <a href="hizmetler.html" data-i18n="footer.linkServices">Hizmetler</a>
+                        <a href="iletisim.html" data-i18n="footer.linkReach">Bize Ula&#351;&#305;n</a>
+                        <div class="home-reference-footer-social">
+                            <a href="#" class="home-reference-footer-social-link home-reference-footer-social-linkedin" aria-label="LinkedIn"><span>in</span></a>
+                            <a href="#" class="home-reference-footer-social-link home-reference-footer-social-instagram" aria-label="Instagram"><span>Instagram</span></a>
+                        </div>
+                    </div>
+                    <div class="home-reference-footer-column">
+                        <h4 data-i18n="footer.servicesTitle">Hizmetler</h4>
+                        <a href="hizmetler.html#ihracat-cozumleri" data-i18n="footer.serviceExport">&#304;hracat &Ccedil;&ouml;z&uuml;mleri</a>
+                        <a href="hizmetler.html#ithalat-cozumleri" data-i18n="footer.serviceImport">&#304;thalat &Ccedil;&ouml;z&uuml;mleri</a>
+                        <a href="hizmetler.html#gumrukleme-ve-lojistik" data-i18n="footer.serviceLogistics">G&uuml;mr&uuml;kleme ve Lojistik</a>
+                        <a href="hizmetler.html#urun-ve-tedarik-yonetimi" data-i18n="footer.serviceSourcing">&Uuml;r&uuml;n &amp; Tedarik Y&ouml;netimi</a>
+                    </div>
+                    <div class="home-reference-footer-column home-reference-footer-column-wide">
+                        <h4 data-i18n="footer.infoTitle">Bilgi</h4>
+                        <a href="kvkk-aydinlatma-metni.html" data-i18n="footer.infoKvkk">KVKK Ayd&#305;nlatma Metni</a>
+                        <a href="cerez-politikasi.html" data-i18n="footer.infoCookie">&Ccedil;erez Politikas&#305;</a>
+                        <a href="gizlilik-politikasi.html" data-i18n="footer.infoPrivacy">Gizlilik Politikas&#305;</a>
+                    </div>
+                </div>
+                <div class="home-reference-footer-bottom">
+                    <div class="home-reference-footer-copy-row">
+                        <span data-i18n-html="footer.copy">&copy; 2026 Dia D&#305;&#351; Ticaret &ndash; Dia Global. T&uuml;m haklar&#305; sakl&#305;d&#305;r.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
