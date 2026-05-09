@@ -5582,3 +5582,194 @@ body.inner-page[data-page-id="about"] .about-panel .content-image:not(.has-conta
     width: 0;
     opacity: 0;
 }
+
+@media (max-width: 640px) {
+    .home-page .navbar,
+    .inner-page .navbar {
+        inset: 14px 0 auto;
+    }
+
+    .home-page .nav-container,
+    .inner-page .nav-container {
+        width: min(100% - 28px, 430px);
+        padding: 0.55rem 0.65rem;
+    }
+
+    .home-page .logo-video-frame,
+    .inner-page .logo-video-frame {
+        width: clamp(142px, 43vw, 176px);
+        height: clamp(36px, 10.8vw, 44px);
+    }
+
+    .home-page .language-switcher,
+    .inner-page .language-switcher,
+    .home-page .language-toggle,
+    .inner-page .language-toggle {
+        width: 40px;
+        min-width: 40px;
+        height: 40px;
+    }
+
+    .language-toggle-globe {
+        width: 16px;
+        height: 16px;
+    }
+
+    .hamburger span {
+        width: 24px;
+        height: 3px;
+        margin: 3px 0;
+    }
+
+    .home-page .nav-actions,
+    .inner-page .nav-actions {
+        gap: 0.55rem;
+    }
+
+    .home-page .nav-menu,
+    .inner-page .nav-menu {
+        top: calc(100% + 8px);
+        left: 14px;
+        right: 14px;
+        width: auto;
+        max-height: calc(100vh - 128px);
+        overflow-y: auto;
+        padding: 0.65rem;
+        border-radius: 22px;
+    }
+
+    .home-page .nav-menu.active,
+    .inner-page .nav-menu.active {
+        left: 14px;
+    }
+
+    .home-page .nav-link,
+    .inner-page .nav-link {
+        padding: 0.62rem 0.75rem;
+        border-radius: 13px;
+        font-size: 0.98rem;
+        line-height: 1.25;
+    }
+
+    .nav-dropdown-link {
+        padding: 0.5rem 0.75rem 0.5rem 1.35rem;
+        border-radius: 12px;
+        font-size: 0.86rem;
+        line-height: 1.25;
+    }
+
+    .home-page .home-gallery-shell {
+        min-height: 650px;
+    }
+
+    .home-page .home-gallery-stage {
+        inset: 0 0 218px 0;
+    }
+
+    .home-page .home-gallery-panel {
+        height: 245px;
+        padding: 2.3rem 0 1.15rem;
+    }
+
+    .home-page .home-gallery-title {
+        font-size: clamp(1.72rem, 8.4vw, 2.18rem);
+        line-height: 1.02;
+        letter-spacing: -0.035em;
+    }
+
+    .home-page .home-gallery-copy,
+    .home-page .home-gallery-controls {
+        width: calc(100% - 2rem);
+    }
+
+    .home-page .home-gallery-controls {
+        margin-top: 1.35rem;
+    }
+
+    .home-page .home-gallery-arrow {
+        width: 44px;
+        height: 44px;
+        font-size: 1.25rem;
+    }
+
+    .home-page .home-contact-grid {
+        width: min(100% - 28px, 430px);
+        grid-template-columns: 1fr;
+    }
+
+    .home-page .home-contact-card {
+        padding: 1.6rem 1.15rem;
+        border-radius: 22px;
+    }
+
+    .home-page .home-contact-card h2 {
+        font-size: clamp(1.8rem, 9vw, 2.35rem);
+        line-height: 1.05;
+    }
+
+    .home-page .home-contact-text {
+        font-size: 1rem;
+        line-height: 1.75;
+    }
+
+    .newsletter-form {
+        grid-template-columns: 1fr;
+        overflow: visible;
+    }
+
+    .newsletter-form input,
+    .newsletter-form button {
+        min-width: 0;
+        padding: 0.9rem 1rem;
+    }
+
+    .newsletter-form .check-row {
+        padding: 0.95rem 0.95rem 1rem;
+    }
+
+    .check-row {
+        display: grid;
+        grid-template-columns: 26px minmax(0, 1fr);
+        gap: 0.7rem;
+        font-size: 0.86rem;
+        line-height: 1.45;
+    }
+
+    .check-row input {
+        width: 22px;
+        height: 22px;
+        margin: 0;
+    }
+
+    .check-row span {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+}
+
+@media (max-width: 380px) {
+    .home-page .nav-container,
+    .inner-page .nav-container {
+        width: calc(100% - 20px);
+        padding: 0.5rem;
+    }
+
+    .home-page .logo-video-frame,
+    .inner-page .logo-video-frame {
+        width: 136px;
+        height: 34px;
+    }
+
+    .home-page .language-switcher,
+    .inner-page .language-switcher,
+    .home-page .language-toggle,
+    .inner-page .language-toggle {
+        width: 36px;
+        min-width: 36px;
+        height: 36px;
+    }
+
+    .hamburger span {
+        width: 22px;
+    }
+}
