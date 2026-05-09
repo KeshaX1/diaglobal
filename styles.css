@@ -5948,3 +5948,164 @@ body.inner-page[data-page-id="about"] .about-panel .content-image:not(.has-conta
         font-size: clamp(1.32rem, 7vw, 1.65rem);
     }
 }
+
+@media (max-width: 640px) {
+    .home-page .navbar,
+    .inner-page .navbar,
+    .comparison-page .navbar {
+        position: sticky !important;
+        inset: auto !important;
+        top: 0 !important;
+        width: 100% !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        box-shadow: none !important;
+        z-index: 1000 !important;
+    }
+
+    .home-page .nav-container,
+    .inner-page .nav-container,
+    .comparison-page .nav-container {
+        display: grid !important;
+        grid-template-columns: 44px minmax(0, 1fr) 44px !important;
+        align-items: center !important;
+        width: 100% !important;
+        max-width: none !important;
+        min-height: 82px !important;
+        margin: 0 !important;
+        padding: 0.85rem 1.4rem !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        background: #ffffff !important;
+        box-shadow: none !important;
+        box-sizing: border-box !important;
+    }
+
+    .home-page .home-logo,
+    .inner-page .home-logo,
+    .comparison-page .home-logo,
+    .home-page .logo,
+    .inner-page .logo,
+    .comparison-page .logo {
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+        justify-self: center !important;
+        align-self: center !important;
+        width: auto !important;
+        height: auto !important;
+        margin: 0 !important;
+        transform: none !important;
+    }
+
+    .home-page .logo-video-frame,
+    .inner-page .logo-video-frame,
+    .comparison-page .logo-video-frame {
+        width: clamp(148px, 38vw, 190px) !important;
+        height: clamp(38px, 10vw, 48px) !important;
+        margin: 0 !important;
+    }
+
+    .home-page .logo .logo-video,
+    .inner-page .logo .logo-video,
+    .comparison-page .logo .logo-video {
+        object-fit: contain !important;
+        transform: scale(1.08) !important;
+    }
+
+    .home-page .nav-actions,
+    .inner-page .nav-actions,
+    .comparison-page .nav-actions {
+        display: contents !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        transform: none !important;
+    }
+
+    .home-page .hamburger,
+    .inner-page .hamburger,
+    .comparison-page .hamburger {
+        display: flex !important;
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+        justify-self: start !important;
+        align-self: center !important;
+        width: 34px !important;
+        height: 34px !important;
+        padding: 0 !important;
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        z-index: 3 !important;
+    }
+
+    .home-page .hamburger span,
+    .inner-page .hamburger span,
+    .comparison-page .hamburger span {
+        width: 29px !important;
+        height: 3px !important;
+        margin: 3.5px 0 !important;
+        border-radius: 0 !important;
+        background: #071024 !important;
+    }
+
+    .home-page .language-switcher,
+    .inner-page .language-switcher,
+    .comparison-page .language-switcher {
+        grid-column: 3 !important;
+        grid-row: 1 !important;
+        justify-self: end !important;
+        align-self: center !important;
+        width: 38px !important;
+        min-width: 38px !important;
+        height: 38px !important;
+        margin: 0 !important;
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        z-index: 3 !important;
+    }
+
+    .home-page .language-toggle,
+    .inner-page .language-toggle,
+    .comparison-page .language-toggle {
+        width: 38px !important;
+        min-width: 38px !important;
+        height: 38px !important;
+        border: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+
+    .home-page .language-toggle-globe,
+    .inner-page .language-toggle-globe,
+    .comparison-page .language-toggle-globe {
+        width: 22px !important;
+        height: 22px !important;
+        stroke: #071024 !important;
+        stroke-width: 2 !important;
+    }
+
+    .home-page .nav-menu,
+    .inner-page .nav-menu,
+    .comparison-page .nav-menu {
+        top: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        max-height: calc(100vh - 82px) !important;
+        max-height: calc(100dvh - 82px) !important;
+        padding: 0.85rem 1.4rem 1.15rem !important;
+        border: 0 !important;
+        border-top: 1px solid rgba(7, 16, 36, 0.08) !important;
+        border-radius: 0 !important;
+        background: #ffffff !important;
+        box-shadow: 0 20px 34px rgba(5, 8, 22, 0.08) !important;
+        box-sizing: border-box !important;
+    }
+
+    .home-page .nav-menu.active,
+    .inner-page .nav-menu.active,
+    .comparison-page .nav-menu.active {
+        left: 0 !important;
+    }
+}
