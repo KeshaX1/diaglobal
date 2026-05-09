@@ -1642,12 +1642,12 @@ a {
     background: #ffffff;
 }
 
-.home-page .newsletter-form input {
+.home-page .newsletter-form input[type="email"] {
     background: #f1ede6;
     color: #071024;
 }
 
-.home-page .newsletter-form input::placeholder {
+.home-page .newsletter-form input[type="email"]::placeholder {
     color: rgba(47, 59, 82, 0.62);
 }
 
@@ -1870,7 +1870,7 @@ a {
     overflow: hidden;
 }
 
-.newsletter-form input {
+.newsletter-form input[type="email"] {
     width: 100%;
     padding: 1rem 1.1rem;
     border: none;
@@ -1907,7 +1907,11 @@ a {
 }
 
 .check-row input {
+    width: 1rem;
+    height: 1rem;
+    flex: 0 0 auto;
     margin-top: 0.2rem;
+    padding: 0;
 }
 
 .home-links-section {
@@ -5584,180 +5588,35 @@ body.inner-page[data-page-id="about"] .about-panel .content-image:not(.has-conta
 }
 
 @media (max-width: 640px) {
+    html,
+    body {
+        overflow-x: hidden;
+    }
+
     .home-page .navbar,
     .inner-page .navbar {
-        inset: 14px 0 auto;
+        inset: 10px 0 auto;
     }
 
     .home-page .nav-container,
     .inner-page .nav-container {
-        width: min(100% - 28px, 430px);
-        padding: 0.55rem 0.65rem;
+        width: min(100% - 24px, 430px);
+        padding: 0.5rem 0.58rem;
+        box-sizing: border-box;
     }
 
     .home-page .logo-video-frame,
     .inner-page .logo-video-frame {
-        width: clamp(142px, 43vw, 176px);
-        height: clamp(36px, 10.8vw, 44px);
+        width: clamp(132px, 41vw, 164px);
+        height: clamp(34px, 10vw, 40px);
+        flex: 0 1 auto;
     }
 
-    .home-page .language-switcher,
-    .inner-page .language-switcher,
-    .home-page .language-toggle,
-    .inner-page .language-toggle {
-        width: 40px;
-        min-width: 40px;
-        height: 40px;
-    }
-
-    .language-toggle-globe {
-        width: 16px;
-        height: 16px;
-    }
-
-    .hamburger span {
-        width: 24px;
-        height: 3px;
-        margin: 3px 0;
-    }
-
-    .home-page .nav-actions,
-    .inner-page .nav-actions {
-        gap: 0.55rem;
-    }
-
-    .home-page .nav-menu,
-    .inner-page .nav-menu {
-        top: calc(100% + 8px);
-        left: 14px;
-        right: 14px;
-        width: auto;
-        max-height: calc(100vh - 128px);
-        overflow-y: auto;
-        padding: 0.65rem;
-        border-radius: 22px;
-    }
-
-    .home-page .nav-menu.active,
-    .inner-page .nav-menu.active {
-        left: 14px;
-    }
-
-    .home-page .nav-link,
-    .inner-page .nav-link {
-        padding: 0.62rem 0.75rem;
-        border-radius: 13px;
-        font-size: 0.98rem;
-        line-height: 1.25;
-    }
-
-    .nav-dropdown-link {
-        padding: 0.5rem 0.75rem 0.5rem 1.35rem;
-        border-radius: 12px;
-        font-size: 0.86rem;
-        line-height: 1.25;
-    }
-
-    .home-page .home-gallery-shell {
-        min-height: 650px;
-    }
-
-    .home-page .home-gallery-stage {
-        inset: 0 0 218px 0;
-    }
-
-    .home-page .home-gallery-panel {
-        height: 245px;
-        padding: 2.3rem 0 1.15rem;
-    }
-
-    .home-page .home-gallery-title {
-        font-size: clamp(1.72rem, 8.4vw, 2.18rem);
-        line-height: 1.02;
-        letter-spacing: -0.035em;
-    }
-
-    .home-page .home-gallery-copy,
-    .home-page .home-gallery-controls {
-        width: calc(100% - 2rem);
-    }
-
-    .home-page .home-gallery-controls {
-        margin-top: 1.35rem;
-    }
-
-    .home-page .home-gallery-arrow {
-        width: 44px;
-        height: 44px;
-        font-size: 1.25rem;
-    }
-
-    .home-page .home-contact-grid {
-        width: min(100% - 28px, 430px);
-        grid-template-columns: 1fr;
-    }
-
-    .home-page .home-contact-card {
-        padding: 1.6rem 1.15rem;
-        border-radius: 22px;
-    }
-
-    .home-page .home-contact-card h2 {
-        font-size: clamp(1.8rem, 9vw, 2.35rem);
-        line-height: 1.05;
-    }
-
-    .home-page .home-contact-text {
-        font-size: 1rem;
-        line-height: 1.75;
-    }
-
-    .newsletter-form {
-        grid-template-columns: 1fr;
-        overflow: visible;
-    }
-
-    .newsletter-form input,
-    .newsletter-form button {
-        min-width: 0;
-        padding: 0.9rem 1rem;
-    }
-
-    .newsletter-form .check-row {
-        padding: 0.95rem 0.95rem 1rem;
-    }
-
-    .check-row {
-        display: grid;
-        grid-template-columns: 26px minmax(0, 1fr);
-        gap: 0.7rem;
-        font-size: 0.86rem;
-        line-height: 1.45;
-    }
-
-    .check-row input {
-        width: 22px;
-        height: 22px;
-        margin: 0;
-    }
-
-    .check-row span {
-        min-width: 0;
-        overflow-wrap: anywhere;
-    }
-}
-
-@media (max-width: 380px) {
-    .home-page .nav-container,
-    .inner-page .nav-container {
-        width: calc(100% - 20px);
-        padding: 0.5rem;
-    }
-
-    .home-page .logo-video-frame,
-    .inner-page .logo-video-frame {
-        width: 136px;
-        height: 34px;
+    .home-page .logo-video,
+    .inner-page .logo-video {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
     }
 
     .home-page .language-switcher,
@@ -5769,7 +5628,222 @@ body.inner-page[data-page-id="about"] .about-panel .content-image:not(.has-conta
         height: 36px;
     }
 
+    .language-toggle-globe {
+        width: 15px;
+        height: 15px;
+    }
+
     .hamburger span {
         width: 22px;
+        height: 3px;
+        margin: 2.6px 0;
+    }
+
+    .home-page .nav-actions,
+    .inner-page .nav-actions {
+        gap: 0.45rem;
+        flex: 0 0 auto;
+    }
+
+    .home-page .nav-menu,
+    .inner-page .nav-menu {
+        top: calc(100% + 7px);
+        left: 12px;
+        right: 12px;
+        width: auto;
+        max-height: calc(100vh - 112px);
+        max-height: calc(100dvh - 112px);
+        overflow-y: auto;
+        padding: 0.55rem;
+        border-radius: 18px;
+        z-index: 30;
+        box-sizing: border-box;
+    }
+
+    .home-page .nav-menu.active,
+    .inner-page .nav-menu.active {
+        left: 12px;
+    }
+
+    .home-page .nav-link,
+    .inner-page .nav-link {
+        padding: 0.52rem 0.65rem;
+        border-radius: 12px;
+        font-size: 0.92rem;
+        line-height: 1.25;
+    }
+
+    .nav-dropdown-link {
+        padding: 0.44rem 0.65rem 0.44rem 1.15rem;
+        border-radius: 10px;
+        font-size: 0.82rem;
+        line-height: 1.25;
+    }
+
+    .home-page .home-gallery-shell {
+        min-height: 590px;
+    }
+
+    .home-page .home-gallery-stage {
+        inset: 0 0 202px 0;
+    }
+
+    .home-page .home-gallery-panel {
+        height: 225px;
+        padding: 2rem 0 1rem;
+    }
+
+    .home-page .home-gallery-panel::before {
+        inset: 2.55rem 0 0 0;
+    }
+
+    .home-page .home-gallery-panel::after {
+        height: 78px;
+        clip-path: ellipse(112% 100% at 50% 100%);
+    }
+
+    .home-page .home-gallery-title {
+        max-width: 96%;
+        font-size: clamp(1.45rem, 7.1vw, 1.92rem);
+        line-height: 1.06;
+        letter-spacing: -0.025em;
+    }
+
+    .home-page .home-gallery-copy,
+    .home-page .home-gallery-controls {
+        width: calc(100% - 1.5rem);
+    }
+
+    .home-page .home-gallery-controls {
+        margin-top: 1rem;
+        gap: 0.85rem;
+    }
+
+    .home-page .home-gallery-arrow {
+        width: 38px;
+        height: 38px;
+        font-size: 1.12rem;
+    }
+
+    .home-page .home-gallery-nav-buttons {
+        gap: 0.65rem;
+    }
+
+    .home-page .home-gallery-counter {
+        font-size: 0.72rem;
+    }
+
+    .home-page .home-gallery-dot {
+        width: 36px;
+    }
+
+    .home-page .home-contact-grid {
+        width: min(100% - 24px, 430px);
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding-top: 1rem;
+    }
+
+    .home-page .home-contact-card {
+        padding: 1.35rem 1rem;
+        border-radius: 18px;
+    }
+
+    .home-page .home-contact-card h2 {
+        font-size: clamp(1.45rem, 7.8vw, 2rem);
+        line-height: 1.08;
+        margin-bottom: 0.75rem;
+    }
+
+    .home-page .home-contact-text {
+        margin-bottom: 1rem;
+        font-size: 0.94rem;
+        line-height: 1.65;
+    }
+
+    .home-page .home-section-kicker {
+        margin-bottom: 0.65rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+    }
+
+    .newsletter-form {
+        grid-template-columns: 1fr;
+        overflow: visible;
+    }
+
+    .newsletter-form input,
+    .newsletter-form button {
+        min-width: 0;
+        padding: 0.82rem 0.9rem;
+        font-size: 0.92rem;
+        box-sizing: border-box;
+    }
+
+    .newsletter-form button {
+        letter-spacing: 0.05em;
+    }
+
+    .newsletter-form .check-row {
+        padding: 0.8rem 0.85rem 0.9rem;
+    }
+
+    .check-row {
+        display: grid;
+        grid-template-columns: 20px minmax(0, 1fr);
+        align-items: start;
+        gap: 0.55rem;
+        margin-top: 0;
+        font-size: 0.78rem;
+        line-height: 1.45;
+    }
+
+    .newsletter-form .check-row input,
+    .check-row input {
+        width: 18px;
+        height: 18px;
+        min-width: 18px;
+        margin: 0;
+        padding: 0;
+        border: 1px solid rgba(21, 24, 33, 0.35);
+        flex: none;
+        appearance: auto;
+        background: transparent;
+    }
+
+    .check-row span {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+}
+
+@media (max-width: 380px) {
+    .home-page .nav-container,
+    .inner-page .nav-container {
+        width: calc(100% - 18px);
+        padding: 0.45rem;
+    }
+
+    .home-page .logo-video-frame,
+    .inner-page .logo-video-frame {
+        width: 124px;
+        height: 32px;
+    }
+
+    .home-page .language-switcher,
+    .inner-page .language-switcher,
+    .home-page .language-toggle,
+    .inner-page .language-toggle {
+        width: 34px;
+        min-width: 34px;
+        height: 34px;
+    }
+
+    .hamburger span {
+        width: 20px;
+    }
+
+    .home-page .home-gallery-title {
+        font-size: clamp(1.32rem, 7vw, 1.65rem);
     }
 }
