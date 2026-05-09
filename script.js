@@ -1166,7 +1166,28 @@ function getCurrentPageId() {
 async function initializeContactMap() {
     const mapContainer = document.getElementById('contact-map');
 
-    if (!mapContainer || typeof mapboxgl === 'undefined') {
+    if (!mapContainer) {
+        return;
+    }
+
+    const diaGlobalLocation = [30.2603, 40.69168];
+
+    function renderFallbackMap() {
+        mapContainer.classList.add('contact-map-fallback');
+        mapContainer.innerHTML = `
+            <iframe
+                title="Dia Global konum haritası"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=30.2503%2C40.68168%2C30.2703%2C40.70168&layer=mapnik&marker=40.69168%2C30.2603"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <a class="contact-map-fallback-link" href="https://www.openstreetmap.org/?mlat=40.69168&mlon=30.2603#map=16/40.69168/30.2603" target="_blank" rel="noopener">
+                Haritada aç
+            </a>
+        `;
+    }
+
+    if (typeof mapboxgl === 'undefined') {
+        renderFallbackMap();
         return;
     }
 
@@ -1180,10 +1201,19 @@ async function initializeContactMap() {
     }
 
     if (!mapboxgl.accessToken) {
+        renderFallbackMap();
         return;
     }
 
-    const diaGlobalLocation = [30.2603, 40.69168];
+    let fallbackRendered = false;
+    const showFallbackOnce = () => {
+        if (fallbackRendered) {
+            return;
+        }
+        fallbackRendered = true;
+        renderFallbackMap();
+    };
+
     const map = new mapboxgl.Map({
         container: mapContainer,
         style: 'mapbox://styles/mapbox/streets-v12',
@@ -1194,6 +1224,8 @@ async function initializeContactMap() {
     map.on('load', () => {
         map.resize();
     });
+
+    map.on('error', showFallbackOnce);
 
     map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
