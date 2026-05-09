@@ -6109,3 +6109,49 @@ body.inner-page[data-page-id="about"] .about-panel .content-image:not(.has-conta
         left: 0 !important;
     }
 }
+
+@media (max-width: 640px) {
+    .home-page .nav-container,
+    .inner-page .nav-container,
+    .comparison-page .nav-container {
+        grid-template-columns: 44px minmax(210px, 1fr) 44px !important;
+        min-height: 88px !important;
+        padding: 0.75rem 1.1rem !important;
+    }
+
+    .home-page .logo-video-frame,
+    .inner-page .logo-video-frame,
+    .comparison-page .logo-video-frame {
+        width: min(58vw, 260px) !important;
+        height: 64px !important;
+        overflow: visible !important;
+    }
+
+    .home-page .logo .logo-video,
+    .inner-page .logo .logo-video,
+    .comparison-page .logo .logo-video {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: none !important;
+        object-fit: contain !important;
+        object-position: center center !important;
+        transform: scale(1.65) !important;
+        transform-origin: center center !important;
+    }
+}
+
+@media (max-width: 380px) {
+    .home-page .nav-container,
+    .inner-page .nav-container,
+    .comparison-page .nav-container {
+        grid-template-columns: 38px minmax(178px, 1fr) 38px !important;
+        padding: 0.7rem 0.85rem !important;
+    }
+
+    .home-page .logo-video-frame,
+    .inner-page .logo-video-frame,
+    .comparison-page .logo-video-frame {
+        width: min(60vw, 230px) !important;
+        height: 58px !important;
+    }
+}
