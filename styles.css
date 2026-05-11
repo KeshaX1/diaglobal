@@ -3323,7 +3323,7 @@ body.inner-page[data-page-id="about"] .page-hero {
     background:
         linear-gradient(90deg, rgba(5, 8, 22, 0.94) 0%, rgba(5, 8, 22, 0.74) 45%, rgba(5, 8, 22, 0.5) 100%),
         linear-gradient(180deg, rgba(5, 8, 22, 0.3), rgba(5, 8, 22, 0.86)),
-        url('img/dia-dis-ticaret.jpg') center center / cover no-repeat;
+        url('img/optimized/about-hero.webp') center center / cover no-repeat;
 }
 
 body.inner-page[data-page-id="about"] .page-hero::before {
@@ -3339,7 +3339,7 @@ body.inner-page[data-page-id="services"] .page-hero {
     background:
         linear-gradient(90deg, rgba(5, 8, 22, 0.92) 0%, rgba(5, 8, 22, 0.72) 45%, rgba(5, 8, 22, 0.5) 100%),
         linear-gradient(180deg, rgba(5, 8, 22, 0.2), rgba(5, 8, 22, 0.8)),
-        url('img/hizmetlerim ana gorsel.jpg') center center / cover no-repeat;
+        url('img/optimized/services-hero.webp') center center / cover no-repeat;
 }
 
 body.inner-page[data-page-id="services"] .page-hero::before {
@@ -4908,7 +4908,7 @@ body.inner-page[data-page-id="services"] .page-hero {
 }
 
 body.inner-page[data-page-id="about"] .page-hero {
-    --page-hero-image: url('img/dia-dis-ticaret.jpg') center center / cover no-repeat;
+    --page-hero-image: url('img/optimized/about-hero.webp') center center / cover no-repeat;
 }
 
 body.inner-page[data-page-id="about"] .page-hero {
@@ -4938,7 +4938,7 @@ body.inner-page[data-page-id="about"] .page-hero .page-title {
 }
 
 body.inner-page[data-page-id="services"] .page-hero {
-    --page-hero-image: url('img/hizmetlerim ana gorsel.jpg') center center / cover no-repeat;
+    --page-hero-image: url('img/optimized/services-hero.webp') center center / cover no-repeat;
 }
 
 body.inner-page[data-page-id="services"] .page-hero {

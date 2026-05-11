@@ -2,6 +2,7 @@ import html
 import json
 import mimetypes
 import os
+from pathlib import PurePosixPath
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
@@ -14,6 +15,16 @@ CONTACT_TO_EMAIL = os.environ.get("CONTACT_TO_EMAIL", "info@diaglobals.com")
 CONTACT_FROM_EMAIL = os.environ.get("CONTACT_FROM_EMAIL", CONTACT_TO_EMAIL)
 CONTACT_FROM_NAME = os.environ.get("CONTACT_FROM_NAME", "Dia Global")
 MAPBOX_ACCESS_TOKEN = os.environ.get("MAPBOX_ACCESS_TOKEN", "")
+LONG_CACHE_EXTENSIONS = {
+    ".css",
+    ".js",
+    ".jpg",
+    ".jpeg",
+    ".png",
+    ".webp",
+    ".svg",
+    ".ico",
+}
 
 
 def clean(value, max_length):
@@ -150,6 +161,18 @@ def send_brevo_email(payload):
         return response.status
 
 
+def log_email_delivery_error(error):
+    if isinstance(error, HTTPError):
+        try:
+            details = error.read().decode("utf-8", errors="replace")
+        except Exception:
+            details = ""
+        print(f"Brevo email failed: HTTP {error.code} {error.reason} {details}")
+        return
+
+    print(f"Brevo email failed: {error}")
+
+
 def build_newsletter_payloads(data):
     email = clean(data.get("email"), 180)
     language = get_language(data)
@@ -262,7 +285,7 @@ class DiaRequestHandler(SimpleHTTPRequestHandler):
                 json_response(self, 500, {"ok": False, "error": "Email service is not configured"})
                 return
             except (HTTPError, URLError, TimeoutError) as error:
-                print(error)
+                log_email_delivery_error(error)
                 json_response(self, 502, {"ok": False, "error": "Email service failed"})
                 return
 
@@ -281,7 +304,7 @@ class DiaRequestHandler(SimpleHTTPRequestHandler):
             json_response(self, 500, {"ok": False, "error": "Email service is not configured"})
             return
         except (HTTPError, URLError, TimeoutError) as error:
-            print(error)
+            log_email_delivery_error(error)
             json_response(self, 502, {"ok": False, "error": "Email service failed"})
             return
 
@@ -289,6 +312,14 @@ class DiaRequestHandler(SimpleHTTPRequestHandler):
 
     def end_headers(self):
         self.send_header("X-Content-Type-Options", "nosniff")
+        path = PurePosixPath(self.path.split("?", 1)[0])
+        extension = path.suffix.lower()
+        if str(path).startswith("/api/"):
+            self.send_header("Cache-Control", "no-store")
+        elif extension in LONG_CACHE_EXTENSIONS:
+            self.send_header("Cache-Control", "public, max-age=31536000, immutable")
+        elif extension == ".html" or not extension:
+            self.send_header("Cache-Control", "public, max-age=300")
         super().end_headers()
 
 
