@@ -6200,6 +6200,10 @@ body.inner-page[data-page-id="about"] .about-panel .content-image:not(.has-conta
         justify-content: center !important;
         min-height: 348px !important;
     }
+
+    body.inner-page[data-page-id="about"] .page-hero .page-title {
+        transform: translateY(-28px) !important;
+    }
 }
 
 @media (max-width: 380px) {
