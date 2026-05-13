@@ -6155,3 +6155,50 @@ body.inner-page[data-page-id="about"] .about-panel .content-image:not(.has-conta
         height: 58px !important;
     }
 }
+
+@media (max-width: 640px) {
+    .inner-page .nav-container {
+        min-height: 78px !important;
+        padding-top: 0.65rem !important;
+        padding-bottom: 0.65rem !important;
+    }
+
+    .inner-page .logo-video-frame {
+        width: min(45vw, 176px) !important;
+        height: 34px !important;
+        overflow: hidden !important;
+    }
+
+    .inner-page .logo .logo-video {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+        object-position: center center !important;
+        transform: scale(1.14) !important;
+        transform-origin: center center !important;
+    }
+
+    body.inner-page[data-page-id="about"] .page-hero {
+        min-height: 500px !important;
+        padding-top: 96px !important;
+        padding-bottom: 56px !important;
+        background:
+            linear-gradient(180deg, rgba(5, 8, 22, 0.05) 0%, rgba(5, 8, 22, 0.18) 52%, rgba(5, 8, 22, 0.34) 100%),
+            var(--page-hero-image, none),
+            #0f5e82 !important;
+        background-position: center top !important;
+        background-size: cover !important;
+    }
+
+    body.inner-page[data-page-id="about"] .page-hero .container {
+        justify-content: flex-end !important;
+        min-height: 348px !important;
+    }
+}
+
+@media (max-width: 380px) {
+    .inner-page .logo-video-frame {
+        width: min(48vw, 160px) !important;
+        height: 32px !important;
+    }
+}
