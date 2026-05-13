@@ -4454,6 +4454,24 @@ body.inner-page[data-page-id="services"] .page-hero .page-description {
     }
 }
 
+@media (min-width: 769px) {
+    .home-page .logo-video-frame,
+    .inner-page .logo-video-frame,
+    .comparison-page .logo-video-frame {
+        width: clamp(170px, 14vw, 220px) !important;
+        height: 42px !important;
+        overflow: visible !important;
+    }
+
+    .home-page .logo .logo-video,
+    .inner-page .logo .logo-video,
+    .comparison-page .logo .logo-video {
+        object-fit: contain !important;
+        object-position: center center !important;
+        transform: none !important;
+    }
+}
+
 @media (max-width: 480px) {
     .hamburger {
         display: flex;
