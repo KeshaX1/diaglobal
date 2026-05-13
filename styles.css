@@ -6351,6 +6351,7 @@ body.inner-page[data-page-id="about"] .about-panel .content-image:not(.has-conta
     .comparison-page .nav-item-dropdown {
         width: 100% !important;
         display: grid !important;
+        grid-template-columns: minmax(0, 1fr) !important;
         justify-items: center !important;
         gap: 0.95rem !important;
     }
@@ -6373,6 +6374,8 @@ body.inner-page[data-page-id="about"] .about-panel .content-image:not(.has-conta
     .home-page .nav-dropdown,
     .inner-page .nav-dropdown,
     .comparison-page .nav-dropdown {
+        grid-column: 1 / -1 !important;
+        width: 100% !important;
         justify-items: center !important;
         gap: 0.85rem !important;
         margin: 0 !important;
