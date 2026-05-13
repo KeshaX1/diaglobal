@@ -6314,6 +6314,14 @@ body.inner-page[data-page-id="about"] .about-panel .content-image:not(.has-conta
         justify-content: center !important;
     }
 
+    .home-page .nav-menu > li.nav-item-dropdown,
+    .inner-page .nav-menu > li.nav-item-dropdown,
+    .comparison-page .nav-menu > li.nav-item-dropdown {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) !important;
+        justify-items: center !important;
+    }
+
     .home-page .nav-link,
     .inner-page .nav-link,
     .comparison-page .nav-link {
