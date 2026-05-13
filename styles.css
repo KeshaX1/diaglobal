@@ -6157,24 +6157,30 @@ body.inner-page[data-page-id="about"] .about-panel .content-image:not(.has-conta
 }
 
 @media (max-width: 640px) {
-    .inner-page .nav-container {
+    .home-page .nav-container,
+    .inner-page .nav-container,
+    .comparison-page .nav-container {
         min-height: 78px !important;
         padding-top: 0.65rem !important;
         padding-bottom: 0.65rem !important;
     }
 
-    .inner-page .logo-video-frame {
-        width: min(45vw, 176px) !important;
+    .home-page .logo-video-frame,
+    .inner-page .logo-video-frame,
+    .comparison-page .logo-video-frame {
+        width: min(48vw, 188px) !important;
         height: 34px !important;
         overflow: hidden !important;
     }
 
-    .inner-page .logo .logo-video {
+    .home-page .logo .logo-video,
+    .inner-page .logo .logo-video,
+    .comparison-page .logo .logo-video {
         width: 100% !important;
         height: 100% !important;
         object-fit: contain !important;
         object-position: center center !important;
-        transform: scale(1.14) !important;
+        transform: none !important;
         transform-origin: center center !important;
     }
 
@@ -6191,14 +6197,16 @@ body.inner-page[data-page-id="about"] .about-panel .content-image:not(.has-conta
     }
 
     body.inner-page[data-page-id="about"] .page-hero .container {
-        justify-content: flex-end !important;
+        justify-content: center !important;
         min-height: 348px !important;
     }
 }
 
 @media (max-width: 380px) {
-    .inner-page .logo-video-frame {
-        width: min(48vw, 160px) !important;
+    .home-page .logo-video-frame,
+    .inner-page .logo-video-frame,
+    .comparison-page .logo-video-frame {
+        width: min(50vw, 172px) !important;
         height: 32px !important;
     }
 }
