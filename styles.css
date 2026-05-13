@@ -6108,6 +6108,70 @@ body.inner-page[data-page-id="about"] .about-panel .content-image:not(.has-conta
     .comparison-page .nav-menu.active {
         left: 0 !important;
     }
+
+    .home-page .nav-item-dropdown > .nav-link,
+    .inner-page .nav-item-dropdown > .nav-link,
+    .comparison-page .nav-item-dropdown > .nav-link {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 1rem !important;
+    }
+
+    .home-page .nav-item-dropdown > .nav-link::before,
+    .inner-page .nav-item-dropdown > .nav-link::before,
+    .comparison-page .nav-item-dropdown > .nav-link::before {
+        content: '+' !important;
+        order: 2 !important;
+        position: static !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 1.2em !important;
+        height: 1.2em !important;
+        margin-left: auto !important;
+        color: currentColor !important;
+        font-size: 1.05rem !important;
+        line-height: 1 !important;
+        transform: none !important;
+    }
+
+    .home-page .nav-item-dropdown.is-open > .nav-link::before,
+    .inner-page .nav-item-dropdown.is-open > .nav-link::before,
+    .comparison-page .nav-item-dropdown.is-open > .nav-link::before {
+        content: '-' !important;
+    }
+
+    .home-page .nav-dropdown,
+    .inner-page .nav-dropdown,
+    .comparison-page .nav-dropdown {
+        display: none !important;
+        position: static !important;
+        min-width: 0 !important;
+        margin: 0.15rem 0 0 !important;
+        padding: 0.15rem 0 0.35rem !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        pointer-events: auto !important;
+    }
+
+    .home-page .nav-item-dropdown.is-open .nav-dropdown,
+    .inner-page .nav-item-dropdown.is-open .nav-dropdown,
+    .comparison-page .nav-item-dropdown.is-open .nav-dropdown {
+        display: grid !important;
+    }
+
+    .home-page .nav-dropdown-link,
+    .inner-page .nav-dropdown-link,
+    .comparison-page .nav-dropdown-link {
+        padding: 0.56rem 1rem 0.56rem 1.45rem !important;
+        font-size: 0.95rem !important;
+    }
 }
 
 @media (max-width: 640px) {

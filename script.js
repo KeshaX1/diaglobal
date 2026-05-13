@@ -527,8 +527,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link, .nav-dropdown-link');
+    const dropdownItems = document.querySelectorAll('.nav-item-dropdown');
     const servicesPageFilter = initializeServicesPageFilter();
     const aboutPageFilter = initializeAboutPageFilter();
+    const isMobileNav = () => window.matchMedia('(max-width: 768px)').matches;
 
     if (hamburger) {
         hamburger.addEventListener('click', () => {
@@ -537,10 +539,36 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    dropdownItems.forEach(item => {
+        const trigger = item.querySelector(':scope > .nav-link');
+        if (!trigger) {
+            return;
+        }
+
+        trigger.setAttribute('aria-expanded', 'false');
+        trigger.addEventListener('click', (e) => {
+            if (!isMobileNav()) {
+                return;
+            }
+
+            e.preventDefault();
+            const isOpen = item.classList.toggle('is-open');
+            trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+    });
+
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
+            if (isMobileNav() && link.matches('.nav-item-dropdown > .nav-link')) {
+                return;
+            }
+
             navMenu.classList.remove('active');
             hamburger.classList.remove('active');
+            dropdownItems.forEach(item => {
+                item.classList.remove('is-open');
+                item.querySelector(':scope > .nav-link')?.setAttribute('aria-expanded', 'false');
+            });
         });
     });
 
