@@ -6278,3 +6278,115 @@ body.inner-page[data-page-id="about"] .about-panel .content-image:not(.has-conta
         height: 32px !important;
     }
 }
+
+@media (max-width: 768px) {
+    .home-page .nav-menu,
+    .inner-page .nav-menu,
+    .comparison-page .nav-menu {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: clamp(1.8rem, 5.4vw, 2.55rem) !important;
+        min-height: calc(100vh - 78px) !important;
+        min-height: calc(100dvh - 78px) !important;
+        padding: clamp(3rem, 9vw, 5rem) 1.5rem 3rem !important;
+        background: #ffffff !important;
+        text-align: center !important;
+        opacity: 0 !important;
+        transform: translateY(-10px) scaleY(0.98) !important;
+        transform-origin: top center !important;
+        pointer-events: none !important;
+    }
+
+    .home-page .nav-menu.active,
+    .inner-page .nav-menu.active,
+    .comparison-page .nav-menu.active {
+        opacity: 1 !important;
+        transform: translateY(0) scaleY(1) !important;
+        pointer-events: auto !important;
+    }
+
+    .home-page .nav-menu > li,
+    .inner-page .nav-menu > li,
+    .comparison-page .nav-menu > li {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    .home-page .nav-link,
+    .inner-page .nav-link,
+    .comparison-page .nav-link {
+        width: auto !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        color: #151821 !important;
+        background: transparent !important;
+        font-family: 'Bahnschrift', 'Segoe UI', sans-serif !important;
+        font-size: clamp(1.55rem, 5.7vw, 2.15rem) !important;
+        font-weight: 400 !important;
+        line-height: 1.1 !important;
+        text-align: center !important;
+        letter-spacing: 0 !important;
+    }
+
+    .home-page .nav-link.current,
+    .inner-page .nav-link.current,
+    .comparison-page .nav-link.current,
+    .home-page .nav-link:hover,
+    .inner-page .nav-link:hover,
+    .comparison-page .nav-link:hover {
+        background: transparent !important;
+        color: #151821 !important;
+    }
+
+    .home-page .nav-link::after,
+    .inner-page .nav-link::after,
+    .comparison-page .nav-link::after {
+        display: none !important;
+    }
+
+    .home-page .nav-item-dropdown,
+    .inner-page .nav-item-dropdown,
+    .comparison-page .nav-item-dropdown {
+        width: 100% !important;
+        display: grid !important;
+        justify-items: center !important;
+        gap: 0.95rem !important;
+    }
+
+    .home-page .nav-item-dropdown > .nav-link,
+    .inner-page .nav-item-dropdown > .nav-link,
+    .comparison-page .nav-item-dropdown > .nav-link {
+        justify-content: center !important;
+        gap: 0.55rem !important;
+    }
+
+    .home-page .nav-item-dropdown > .nav-link::before,
+    .inner-page .nav-item-dropdown > .nav-link::before,
+    .comparison-page .nav-item-dropdown > .nav-link::before {
+        margin-left: 0.35rem !important;
+        font-family: 'Bahnschrift', 'Segoe UI', sans-serif !important;
+        font-size: 1.4rem !important;
+    }
+
+    .home-page .nav-dropdown,
+    .inner-page .nav-dropdown,
+    .comparison-page .nav-dropdown {
+        justify-items: center !important;
+        gap: 0.85rem !important;
+        margin: 0 !important;
+        padding: 0.2rem 0 0 !important;
+    }
+
+    .home-page .nav-dropdown-link,
+    .inner-page .nav-dropdown-link,
+    .comparison-page .nav-dropdown-link {
+        padding: 0 !important;
+        color: #151821 !important;
+        font-family: 'Bahnschrift', 'Segoe UI', sans-serif !important;
+        font-size: clamp(1.05rem, 4.2vw, 1.35rem) !important;
+        font-weight: 400 !important;
+        text-align: center !important;
+    }
+}
