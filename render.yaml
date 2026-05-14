@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: dia-global
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python dia.py"
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: CONTACT_TO_EMAIL
+        value: info@diaglobals.com
+      - key: CONTACT_FROM_EMAIL
+        value: info@diaglobals.com
+      - key: CONTACT_FROM_NAME
+        value: Dia Global
+      - key: BREVO_API_KEY
+        sync: false
+      - key: MAPBOX_ACCESS_TOKEN
+        sync: false
