@@ -9,7 +9,7 @@ from urllib.request import Request, urlopen
 
 
 IS_RENDER = os.environ.get("RENDER") == "true"
-HOST = os.environ.get("HOST") or ("0.0.0.0" if IS_RENDER else "127.0.0.1")
+HOST = "0.0.0.0" if IS_RENDER else os.environ.get("HOST", "127.0.0.1")
 PORT = int(os.environ.get("PORT") or ("10000" if IS_RENDER else "8000"))
 BREVO_API_URL = "https://api.brevo.com/v3/smtp/email"
 CONTACT_TO_EMAIL = os.environ.get("CONTACT_TO_EMAIL", "info@diaglobals.com")
