@@ -1,6 +1,6 @@
 const HOME_TRANSLATIONS = {
     tr: {
-        documentTitle: 'Dia Global - Küresel Lojistik Çözümleri',
+        documentTitle: 'Dia Global \u2013 D\u0131\u015f Ticarette Yeni Nesil \u00c7\u00f6z\u00fcmler',
         nav: {
             home: 'Ana Sayfa',
             about: 'Hakkımızda',
@@ -100,7 +100,7 @@ const HOME_TRANSLATIONS = {
         }
     },
     en: {
-        documentTitle: 'Dia Global - Global Logistics Solutions',
+        documentTitle: 'Dia Global \u2013 Next Generation Foreign Trade Solutions',
         nav: {
             home: 'Home',
             about: 'About Us',
@@ -264,7 +264,7 @@ Object.assign(HOME_TRANSLATIONS.en.footer, {
 
 const PAGE_TITLES = {
     tr: {
-        home: 'Dia Global - K\u00fcresel Lojistik \u00c7\u00f6z\u00fcmleri',
+        home: 'Dia Global \u2013 D\u0131\u015f Ticarette Yeni Nesil \u00c7\u00f6z\u00fcmler',
         about: 'Dia Global - Hakk\u0131m\u0131zda',
         services: 'Dia Global - Hizmetlerimiz',
         contact: 'Dia Global - \u0130leti\u015fim',
@@ -272,7 +272,7 @@ const PAGE_TITLES = {
         solutions: 'Dia Global - \u00c7\u00f6z\u00fcmler'
     },
     en: {
-        home: 'Dia Global - Global Logistics Solutions',
+        home: 'Dia Global \u2013 Next Generation Foreign Trade Solutions',
         about: 'Dia Global - About Us',
         services: 'Dia Global - Our Services',
         contact: 'Dia Global - Contact',
