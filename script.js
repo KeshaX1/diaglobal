@@ -298,7 +298,7 @@ PAGE_TITLES.en.cookie = 'Dia Global - Cookie Policy';
 
 const GLOBAL_UI_TRANSLATIONS = {
     tr: [
-        { selector: 'nav .nav-link[href="index.html"]', html: 'Ana Sayfa' },
+        { selector: 'nav .nav-link[href="/"]', html: 'Ana Sayfa' },
         { selector: 'nav .nav-link[href="hakkimizda.html"]', html: 'Hakk&#305;m&#305;zda' },
         { selector: 'nav .nav-item-dropdown > .nav-link[href="hizmetler.html"]', html: 'Hizmetler' },
         { selector: 'nav .nav-link[href="iletisim.html"]', html: 'Bize Ula&#351;&#305;n' },
@@ -308,7 +308,7 @@ const GLOBAL_UI_TRANSLATIONS = {
         { selector: 'nav .nav-dropdown-link[href="hizmetler.html#urun-ve-tedarik-yonetimi"], nav .nav-dropdown-link[href="#urun-ve-tedarik-yonetimi"]', html: '&Uuml;r&uuml;n &amp; Tedarik Y&ouml;netimi' }
     ],
     en: [
-        { selector: 'nav .nav-link[href="index.html"]', html: 'Home' },
+        { selector: 'nav .nav-link[href="/"]', html: 'Home' },
         { selector: 'nav .nav-link[href="hakkimizda.html"]', html: 'About Us' },
         { selector: 'nav .nav-item-dropdown > .nav-link[href="hizmetler.html"]', html: 'Services' },
         { selector: 'nav .nav-link[href="iletisim.html"]', html: 'Contact' },
