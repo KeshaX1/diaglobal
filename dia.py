@@ -244,6 +244,14 @@ def build_newsletter_payloads(data):
 
 class DiaRequestHandler(SimpleHTTPRequestHandler):
     def do_GET(self):
+        request_path, _, query = self.path.partition("?")
+        if request_path == "/index.html":
+            location = "/" + (f"?{query}" if query else "")
+            self.send_response(301)
+            self.send_header("Location", location)
+            self.end_headers()
+            return
+
         if self.path == "/api/config":
             json_response(self, 200, {"mapboxAccessToken": MAPBOX_ACCESS_TOKEN})
             return
