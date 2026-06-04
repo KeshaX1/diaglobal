@@ -2838,6 +2838,7 @@ a {
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
 }
 
+.contact-form-card h1,
 .contact-form-card h3,
 .kvkk-card h3 {
     color: var(--primary);
@@ -3381,6 +3382,7 @@ body.inner-page[data-page-id="services"] .page-kicker {
 .inner-page .services-extra-card h3,
 .inner-page .solution-block h3,
 .inner-page .contact-info h3,
+.inner-page .contact-form-card h1,
 .inner-page .contact-form-card h3,
 .inner-page .kvkk-card h3,
 .inner-page .footer-section h4 {
@@ -4073,6 +4075,7 @@ body.inner-page[data-page-id="services"] .page-hero .page-description {
 .contact-page .contact h2,
 .contact-page .contact h3,
 .contact-page .contact h4,
+.contact-page .contact-form-card h1,
 .contact-page .contact-form-card h3,
 .contact-page .contact-info h3,
 .contact-page .contact-footer-header h2,
