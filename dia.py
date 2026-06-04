@@ -18,6 +18,7 @@ CONTACT_FROM_NAME = os.environ.get("CONTACT_FROM_NAME", "Dia Global")
 MAPBOX_ACCESS_TOKEN = os.environ.get("MAPBOX_ACCESS_TOKEN", "")
 CANONICAL_HOST = "dia-global.com"
 CANONICAL_WWW_HOST = f"www.{CANONICAL_HOST}"
+REMOVED_PATHS = {"/cozumler.html", "/karsilastirmalar.html"}
 LONG_CACHE_EXTENSIONS = {
     ".css",
     ".js",
@@ -267,10 +268,24 @@ class DiaRequestHandler(SimpleHTTPRequestHandler):
         self.send_header("Location", location)
         self.end_headers()
 
+    def send_gone(self, include_body=True):
+        body = b"410 Gone\n" if include_body else b""
+        self.send_response(410)
+        self.send_header("Content-Type", "text/plain; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        if include_body:
+            self.wfile.write(body)
+
     def do_GET(self):
         redirect_location = self.canonical_redirect_location()
         if redirect_location:
             self.send_permanent_redirect(redirect_location)
+            return
+
+        request_path = self.path.partition("?")[0]
+        if request_path in REMOVED_PATHS:
+            self.send_gone()
             return
 
         if self.path == "/api/config":
@@ -283,6 +298,11 @@ class DiaRequestHandler(SimpleHTTPRequestHandler):
         redirect_location = self.canonical_redirect_location()
         if redirect_location:
             self.send_permanent_redirect(redirect_location)
+            return
+
+        request_path = self.path.partition("?")[0]
+        if request_path in REMOVED_PATHS:
+            self.send_gone(include_body=False)
             return
 
         super().do_HEAD()
