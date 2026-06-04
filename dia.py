@@ -16,6 +16,8 @@ CONTACT_TO_EMAIL = os.environ.get("CONTACT_TO_EMAIL", "info@diaglobals.com")
 CONTACT_FROM_EMAIL = os.environ.get("CONTACT_FROM_EMAIL", CONTACT_TO_EMAIL)
 CONTACT_FROM_NAME = os.environ.get("CONTACT_FROM_NAME", "Dia Global")
 MAPBOX_ACCESS_TOKEN = os.environ.get("MAPBOX_ACCESS_TOKEN", "")
+CANONICAL_HOST = "dia-global.com"
+CANONICAL_WWW_HOST = f"www.{CANONICAL_HOST}"
 LONG_CACHE_EXTENSIONS = {
     ".css",
     ".js",
@@ -243,13 +245,32 @@ def build_newsletter_payloads(data):
 
 
 class DiaRequestHandler(SimpleHTTPRequestHandler):
-    def do_GET(self):
+    def canonical_redirect_location(self):
         request_path, _, query = self.path.partition("?")
-        if request_path == "/index.html":
-            location = "/" + (f"?{query}" if query else "")
-            self.send_response(301)
-            self.send_header("Location", location)
-            self.end_headers()
+        host = self.headers.get("Host", "").split(":", 1)[0].lower()
+        forwarded_proto = self.headers.get("X-Forwarded-Proto", "").split(",", 1)[0].strip().lower()
+        should_redirect_index = request_path == "/index.html"
+        should_redirect_host = host == CANONICAL_WWW_HOST
+        should_redirect_proto = host in {CANONICAL_HOST, CANONICAL_WWW_HOST} and forwarded_proto == "http"
+
+        if should_redirect_host or should_redirect_proto:
+            canonical_path = "/" if should_redirect_index else request_path
+            return f"https://{CANONICAL_HOST}{canonical_path}" + (f"?{query}" if query else "")
+
+        if should_redirect_index:
+            return "/" + (f"?{query}" if query else "")
+
+        return None
+
+    def send_permanent_redirect(self, location):
+        self.send_response(301)
+        self.send_header("Location", location)
+        self.end_headers()
+
+    def do_GET(self):
+        redirect_location = self.canonical_redirect_location()
+        if redirect_location:
+            self.send_permanent_redirect(redirect_location)
             return
 
         if self.path == "/api/config":
@@ -257,6 +278,14 @@ class DiaRequestHandler(SimpleHTTPRequestHandler):
             return
 
         super().do_GET()
+
+    def do_HEAD(self):
+        redirect_location = self.canonical_redirect_location()
+        if redirect_location:
+            self.send_permanent_redirect(redirect_location)
+            return
+
+        super().do_HEAD()
 
     def do_POST(self):
         if self.path not in {"/api/contact", "/api/newsletter"}:
