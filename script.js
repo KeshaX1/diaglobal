@@ -238,46 +238,6 @@ Object.assign(HOME_TRANSLATIONS.en, {
     }
 });
 
-Object.assign(HOME_TRANSLATIONS.tr, {
-    homeComparison: {
-        kicker: 'Kar\u015f\u0131la\u015ft\u0131rma',
-        title: 'Hangi hizmet hangi ihtiyaca uygun?',
-        description: 'Ana operasyon hedefinize g\u00f6re Dia Global ekibinden alabilece\u011finiz deste\u011fi h\u0131zl\u0131ca kar\u015f\u0131la\u015ft\u0131r\u0131n.',
-        exportLabel: '\u0130hracat',
-        exportTitle: '\u0130hracat \u00c7\u00f6z\u00fcmleri',
-        exportText: 'Yeni pazarlara a\u00e7\u0131lmak, al\u0131c\u0131 s\u00fcre\u00e7lerini y\u00f6netmek ve teslimat ak\u0131\u015f\u0131n\u0131 netle\u015ftirmek isteyen firmalar i\u00e7in.',
-        importLabel: '\u0130thalat',
-        importTitle: '\u0130thalat \u00c7\u00f6z\u00fcmleri',
-        importText: 'Do\u011fru tedarik\u00e7iye ula\u015fmak, maliyetleri kontrol etmek ve ithalat operasyonunu u\u00e7tan uca takip etmek isteyen ekipler i\u00e7in.',
-        logisticsLabel: 'Lojistik',
-        logisticsTitle: 'G\u00fcmr\u00fckleme ve Lojistik',
-        logisticsText: 'Belge, g\u00fcmr\u00fck ve ta\u015f\u0131ma ad\u0131mlar\u0131n\u0131 tek plan alt\u0131nda toplamak isteyen operasyonlar i\u00e7in.',
-        sourcingLabel: 'Tedarik',
-        sourcingTitle: '\u00dcr\u00fcn & Tedarik Y\u00f6netimi',
-        sourcingText: '\u00dcr\u00fcn ara\u015ft\u0131rmas\u0131, tedarik\u00e7i kontrol\u00fc ve s\u00fcrd\u00fcr\u00fclebilir tedarik ak\u0131\u015f\u0131 kurmak isteyen markalar i\u00e7in.'
-    }
-});
-
-Object.assign(HOME_TRANSLATIONS.en, {
-    homeComparison: {
-        kicker: 'Comparison',
-        title: 'Which service fits which need?',
-        description: 'Compare the support you can receive from Dia Global based on your primary operational goal.',
-        exportLabel: 'Export',
-        exportTitle: 'Export Solutions',
-        exportText: 'For companies that want to enter new markets, manage buyer workflows, and clarify the delivery flow.',
-        importLabel: 'Import',
-        importTitle: 'Import Solutions',
-        importText: 'For teams that want to reach the right supplier, control costs, and track import operations end to end.',
-        logisticsLabel: 'Logistics',
-        logisticsTitle: 'Customs and Logistics',
-        logisticsText: 'For operations that need documentation, customs, and transport steps gathered under one plan.',
-        sourcingLabel: 'Sourcing',
-        sourcingTitle: 'Product & Supply Management',
-        sourcingText: 'For brands that need product research, supplier checks, and a sustainable sourcing flow.'
-    }
-});
-
 Object.assign(HOME_TRANSLATIONS.tr.footer, {
     corporateTitle: 'Kurumsal',
     servicesTitle: 'Hizmetler',
