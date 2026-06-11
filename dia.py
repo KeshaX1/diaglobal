@@ -12,7 +12,7 @@ IS_RENDER = os.environ.get("RENDER") == "true"
 HOST = "0.0.0.0" if IS_RENDER else os.environ.get("HOST", "127.0.0.1")
 PORT = int(os.environ.get("PORT") or ("10000" if IS_RENDER else "8000"))
 BREVO_API_URL = "https://api.brevo.com/v3/smtp/email"
-CONTACT_TO_EMAIL = os.environ.get("CONTACT_TO_EMAIL", "dia-global.com@dia-global.com")
+CONTACT_TO_EMAIL = os.environ.get("CONTACT_TO_EMAIL", "info@dia-global.com")
 CONTACT_FROM_EMAIL = os.environ.get("CONTACT_FROM_EMAIL", CONTACT_TO_EMAIL)
 CONTACT_FROM_NAME = os.environ.get("CONTACT_FROM_NAME", "Dia Global")
 MAPBOX_ACCESS_TOKEN = os.environ.get("MAPBOX_ACCESS_TOKEN", "")
