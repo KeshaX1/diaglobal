@@ -12,7 +12,7 @@ IS_RENDER = os.environ.get("RENDER") == "true"
 HOST = "0.0.0.0" if IS_RENDER else os.environ.get("HOST", "127.0.0.1")
 PORT = int(os.environ.get("PORT") or ("10000" if IS_RENDER else "8000"))
 BREVO_API_URL = "https://api.brevo.com/v3/smtp/email"
-CONTACT_TO_EMAIL = os.environ.get("CONTACT_TO_EMAIL", "info@diaglobals.com")
+CONTACT_TO_EMAIL = os.environ.get("CONTACT_TO_EMAIL", "dia-global.com@dia-global.com")
 CONTACT_FROM_EMAIL = os.environ.get("CONTACT_FROM_EMAIL", CONTACT_TO_EMAIL)
 CONTACT_FROM_NAME = os.environ.get("CONTACT_FROM_NAME", "Dia Global")
 MAPBOX_ACCESS_TOKEN = os.environ.get("MAPBOX_ACCESS_TOKEN", "")
@@ -340,11 +340,11 @@ class DiaRequestHandler(SimpleHTTPRequestHandler):
                     send_brevo_email(payload)
             except RuntimeError as error:
                 print(error)
-                json_response(self, 500, {"ok": False, "error": "Email service is not configured"})
+                json_response(self, 500, {"ok": False, "error": "Email service is not configured", "code": "email_not_configured"})
                 return
             except (HTTPError, URLError, TimeoutError) as error:
                 log_email_delivery_error(error)
-                json_response(self, 502, {"ok": False, "error": "Email service failed"})
+                json_response(self, 502, {"ok": False, "error": "Email service failed", "code": "email_service_failed"})
                 return
 
             json_response(self, 200, {"ok": True})
@@ -359,11 +359,11 @@ class DiaRequestHandler(SimpleHTTPRequestHandler):
             send_contact_email(payload)
         except RuntimeError as error:
             print(error)
-            json_response(self, 500, {"ok": False, "error": "Email service is not configured"})
+            json_response(self, 500, {"ok": False, "error": "Email service is not configured", "code": "email_not_configured"})
             return
         except (HTTPError, URLError, TimeoutError) as error:
             log_email_delivery_error(error)
-            json_response(self, 502, {"ok": False, "error": "Email service failed"})
+            json_response(self, 502, {"ok": False, "error": "Email service failed", "code": "email_service_failed"})
             return
 
         json_response(self, 200, {"ok": True})
