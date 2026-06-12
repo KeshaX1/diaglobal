@@ -2,6 +2,7 @@ import html
 import json
 import mimetypes
 import os
+import traceback
 from pathlib import PurePosixPath
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from urllib.error import HTTPError, URLError
@@ -43,7 +44,8 @@ def get_verified_sender_email():
     if sender_email != VERIFIED_CONTACT_FROM_EMAIL:
         print(
             "CONTACT_FROM_EMAIL is not the verified Brevo sender; "
-            f"using {VERIFIED_CONTACT_FROM_EMAIL} instead."
+            f"using {VERIFIED_CONTACT_FROM_EMAIL} instead.",
+            flush=True,
         )
         return VERIFIED_CONTACT_FROM_EMAIL
     return sender_email
@@ -140,6 +142,7 @@ def send_contact_email(payload):
     if not api_key:
         raise RuntimeError("BREVO_API_KEY is not configured")
 
+    log_email_payload("contact", payload)
     body = json.dumps(payload).encode("utf-8")
     request = Request(
         BREVO_API_URL,
@@ -161,6 +164,7 @@ def send_brevo_email(payload):
     if not api_key:
         raise RuntimeError("BREVO_API_KEY is not configured")
 
+    log_email_payload("newsletter", payload)
     body = json.dumps(payload).encode("utf-8")
     request = Request(
         BREVO_API_URL,
@@ -183,11 +187,26 @@ def log_email_delivery_error(error):
             details = error.read().decode("utf-8", errors="replace")
         except Exception:
             details = ""
-        print(f"Brevo email failed: HTTP {error.code} {error.reason} {details}")
+        print(f"Brevo email failed: HTTP {error.code} {error.reason} {details}", flush=True)
         return details
 
-    print(f"Brevo email failed: {error}")
+    print(f"Brevo email failed: {type(error).__name__}: {error}", flush=True)
     return ""
+
+
+def log_unexpected_email_error(error):
+    print(f"CONTACT FORM ERROR: {type(error).__name__}: {error}", flush=True)
+    traceback.print_exc()
+
+
+def log_email_payload(kind, payload):
+    safe_payload = {
+        "sender": payload.get("sender"),
+        "to": payload.get("to"),
+        "replyTo": payload.get("replyTo"),
+        "subject": payload.get("subject"),
+    }
+    print(f"Brevo {kind} payload envelope: {json.dumps(safe_payload, ensure_ascii=False)}", flush=True)
 
 
 def email_delivery_error_code(error_details):
@@ -368,6 +387,10 @@ class DiaRequestHandler(SimpleHTTPRequestHandler):
                 error_details = log_email_delivery_error(error)
                 json_response(self, 502, {"ok": False, "error": "Email service failed", "code": email_delivery_error_code(error_details)})
                 return
+            except Exception as error:
+                log_unexpected_email_error(error)
+                json_response(self, 500, {"ok": False, "error": "Email service failed", "code": "email_unexpected_error"})
+                return
 
             json_response(self, 200, {"ok": True})
             return
@@ -386,6 +409,10 @@ class DiaRequestHandler(SimpleHTTPRequestHandler):
         except (HTTPError, URLError, TimeoutError) as error:
             error_details = log_email_delivery_error(error)
             json_response(self, 502, {"ok": False, "error": "Email service failed", "code": email_delivery_error_code(error_details)})
+            return
+        except Exception as error:
+            log_unexpected_email_error(error)
+            json_response(self, 500, {"ok": False, "error": "Email service failed", "code": "email_unexpected_error"})
             return
 
         json_response(self, 200, {"ok": True})
