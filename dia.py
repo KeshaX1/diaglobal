@@ -13,7 +13,8 @@ HOST = "0.0.0.0" if IS_RENDER else os.environ.get("HOST", "127.0.0.1")
 PORT = int(os.environ.get("PORT") or ("10000" if IS_RENDER else "8000"))
 BREVO_API_URL = "https://api.brevo.com/v3/smtp/email"
 CONTACT_TO_EMAIL = os.environ.get("CONTACT_TO_EMAIL", "info@dia-global.com")
-CONTACT_FROM_EMAIL = os.environ.get("CONTACT_FROM_EMAIL", CONTACT_TO_EMAIL)
+VERIFIED_CONTACT_FROM_EMAIL = "info@dia-global.com"
+CONTACT_FROM_EMAIL = os.environ.get("CONTACT_FROM_EMAIL", VERIFIED_CONTACT_FROM_EMAIL)
 CONTACT_FROM_NAME = os.environ.get("CONTACT_FROM_NAME", "Dia Global")
 MAPBOX_ACCESS_TOKEN = os.environ.get("MAPBOX_ACCESS_TOKEN", "")
 CANONICAL_HOST = "dia-global.com"
@@ -35,6 +36,17 @@ def clean(value, max_length):
     if not isinstance(value, str):
         return ""
     return value.strip()[:max_length]
+
+
+def get_verified_sender_email():
+    sender_email = clean(CONTACT_FROM_EMAIL, 180).lower()
+    if sender_email != VERIFIED_CONTACT_FROM_EMAIL:
+        print(
+            "CONTACT_FROM_EMAIL is not the verified Brevo sender; "
+            f"using {VERIFIED_CONTACT_FROM_EMAIL} instead."
+        )
+        return VERIFIED_CONTACT_FROM_EMAIL
+    return sender_email
 
 
 def get_language(data):
@@ -102,7 +114,7 @@ def build_email_payload(data):
     return {
         "sender": {
             "name": CONTACT_FROM_NAME,
-            "email": CONTACT_FROM_EMAIL,
+            "email": get_verified_sender_email(),
         },
         "to": [{"email": CONTACT_TO_EMAIL}],
         "replyTo": {
@@ -172,9 +184,19 @@ def log_email_delivery_error(error):
         except Exception:
             details = ""
         print(f"Brevo email failed: HTTP {error.code} {error.reason} {details}")
-        return
+        return details
 
     print(f"Brevo email failed: {error}")
+    return ""
+
+
+def email_delivery_error_code(error_details):
+    normalized_details = error_details.lower()
+    if "sender" in normalized_details or "from" in normalized_details:
+        return "email_sender_rejected"
+    if "key" in normalized_details or "unauthorized" in normalized_details:
+        return "email_auth_failed"
+    return "email_service_failed"
 
 
 def build_newsletter_payloads(data):
@@ -221,7 +243,7 @@ def build_newsletter_payloads(data):
         {
             "sender": {
                 "name": CONTACT_FROM_NAME,
-                "email": CONTACT_FROM_EMAIL,
+                "email": get_verified_sender_email(),
             },
             "to": [{"email": email}],
             "subject": user_subject,
@@ -231,7 +253,7 @@ def build_newsletter_payloads(data):
         {
             "sender": {
                 "name": CONTACT_FROM_NAME,
-                "email": CONTACT_FROM_EMAIL,
+                "email": get_verified_sender_email(),
             },
             "to": [{"email": CONTACT_TO_EMAIL}],
             "subject": "Yeni Dia Global e-bülten kaydı",
@@ -343,8 +365,8 @@ class DiaRequestHandler(SimpleHTTPRequestHandler):
                 json_response(self, 500, {"ok": False, "error": "Email service is not configured", "code": "email_not_configured"})
                 return
             except (HTTPError, URLError, TimeoutError) as error:
-                log_email_delivery_error(error)
-                json_response(self, 502, {"ok": False, "error": "Email service failed", "code": "email_service_failed"})
+                error_details = log_email_delivery_error(error)
+                json_response(self, 502, {"ok": False, "error": "Email service failed", "code": email_delivery_error_code(error_details)})
                 return
 
             json_response(self, 200, {"ok": True})
@@ -362,8 +384,8 @@ class DiaRequestHandler(SimpleHTTPRequestHandler):
             json_response(self, 500, {"ok": False, "error": "Email service is not configured", "code": "email_not_configured"})
             return
         except (HTTPError, URLError, TimeoutError) as error:
-            log_email_delivery_error(error)
-            json_response(self, 502, {"ok": False, "error": "Email service failed", "code": "email_service_failed"})
+            error_details = log_email_delivery_error(error)
+            json_response(self, 502, {"ok": False, "error": "Email service failed", "code": email_delivery_error_code(error_details)})
             return
 
         json_response(self, 200, {"ok": True})
