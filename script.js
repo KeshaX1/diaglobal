@@ -731,7 +731,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error(error);
                 if (error.code === 'email_not_configured') {
                     showNotification(t('notifications.contactConfigError'), 'error');
-                } else if (['email_service_failed', 'email_sender_rejected', 'email_auth_failed'].includes(error.code)) {
+                } else if (['email_service_failed', 'email_sender_rejected', 'email_auth_failed', 'email_unexpected_error'].includes(error.code)) {
                     showNotification(t('notifications.contactServiceError'), 'error');
                 } else {
                     showNotification(t('notifications.contactError'), 'error');

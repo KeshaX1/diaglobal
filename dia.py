@@ -196,7 +196,7 @@ def log_email_delivery_error(error):
 
 def log_unexpected_email_error(error):
     print(f"CONTACT FORM ERROR: {type(error).__name__}: {error}", flush=True)
-    traceback.print_exc()
+    print(traceback.format_exc(), flush=True)
 
 
 def log_email_payload(kind, payload):
@@ -389,7 +389,7 @@ class DiaRequestHandler(SimpleHTTPRequestHandler):
                 return
             except Exception as error:
                 log_unexpected_email_error(error)
-                json_response(self, 500, {"ok": False, "error": "Email service failed", "code": "email_unexpected_error"})
+                json_response(self, 500, {"ok": False, "error": "Email service failed", "code": "email_service_failed"})
                 return
 
             json_response(self, 200, {"ok": True})
@@ -412,7 +412,7 @@ class DiaRequestHandler(SimpleHTTPRequestHandler):
             return
         except Exception as error:
             log_unexpected_email_error(error)
-            json_response(self, 500, {"ok": False, "error": "Email service failed", "code": "email_unexpected_error"})
+            json_response(self, 500, {"ok": False, "error": "Email service failed", "code": "email_service_failed"})
             return
 
         json_response(self, 200, {"ok": True})
