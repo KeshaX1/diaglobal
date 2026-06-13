@@ -4011,6 +4011,39 @@ body.inner-page[data-page-id="services"] .page-hero .page-description {
     max-width: 220px;
 }
 
+.contact-page .contact-form .btn[aria-disabled="true"] {
+    background: #f4f5fb;
+    color: #6f7480;
+    border-color: rgba(21, 24, 33, 0.08);
+    box-shadow: none;
+    opacity: 0.78;
+}
+
+.contact-page .contact-form .btn[aria-disabled="true"]:hover {
+    background: #f4f5fb;
+    color: #6f7480;
+    border-color: rgba(21, 24, 33, 0.08);
+    box-shadow: none;
+    text-shadow: none;
+    transform: none;
+}
+
+.contact-page .contact-form .btn.is-consent-ready {
+    background: linear-gradient(135deg, #027fb9, #16a6d8);
+    color: #ffffff;
+    border-color: rgba(2, 127, 185, 0.45);
+    box-shadow: 0 12px 28px rgba(2, 127, 185, 0.28);
+    opacity: 1;
+}
+
+.contact-info-icon-email {
+    display: inline-block;
+    font-size: 1em;
+    line-height: 1;
+    vertical-align: -0.08em;
+    color: #f5b400;
+}
+
 .contact-page .kvkk-inline-note {
     color: #5b6472;
     font-size: 0.95rem;
