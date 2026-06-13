@@ -686,6 +686,12 @@ document.addEventListener('DOMContentLoaded', function () {
             e.preventDefault();
 
             const submitButton = form.querySelector('button[type="submit"]');
+            const consentCheck = form.querySelector('[data-kvkk-consent-check="true"]');
+            if (!consentCheck?.checked) {
+                submitButton?.setAttribute('disabled', 'disabled');
+                return;
+            }
+
             const formData = new FormData(form);
             const payload = {
                 name: String(formData.get('name') || '').trim(),
@@ -723,10 +729,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 showNotification(t('notifications.contactReceived'));
                 form.reset();
-                const consentCheck = form.querySelector('[data-kvkk-consent-check="true"]');
-                if (consentCheck) {
-                    consentCheck.checked = true;
-                }
             } catch (error) {
                 console.error(error);
                 if (error.code === 'email_not_configured') {
@@ -737,7 +739,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     showNotification(t('notifications.contactError'), 'error');
                 }
             } finally {
-                submitButton?.removeAttribute('disabled');
+                if (submitButton) {
+                    submitButton.disabled = !consentCheck?.checked;
+                }
             }
         });
     });
@@ -1377,71 +1381,21 @@ function initializeContactKvkkConsent() {
         return;
     }
 
-    const consentKey = 'dia-contact-kvkk-consent';
     const consentCheck = contactForm.querySelector('[data-kvkk-consent-check="true"]');
-    const formCard = document.querySelector('.contact-form-card');
-    const formControls = Array.from(contactForm.querySelectorAll('input, textarea, button'))
-        .filter(control => control !== consentCheck);
+    const submitButton = contactForm.querySelector('button[type="submit"]');
 
-    if (!consentCheck) {
+    if (!consentCheck || !submitButton) {
         return;
     }
 
-    const hasConsent = () => {
-        try {
-            return localStorage.getItem(consentKey) === 'accepted';
-        } catch (error) {
-            return false;
-        }
+    const updateSubmitState = () => {
+        submitButton.disabled = !consentCheck.checked;
     };
 
-    const saveConsent = () => {
-        try {
-            localStorage.setItem(consentKey, 'accepted');
-        } catch (error) {
-            // Ignore storage failures and keep current session behavior.
-        }
-    };
-
-    const clearConsent = () => {
-        try {
-            localStorage.removeItem(consentKey);
-        } catch (error) {
-            // Ignore storage failures and keep current session behavior.
-        }
-    };
-
-    const setFormEnabled = enabled => {
-        formControls.forEach(control => {
-            control.disabled = !enabled;
-        });
-
-        if (formCard) {
-            formCard.classList.toggle('is-locked', !enabled);
-        }
-    };
-
-    if (hasConsent()) {
-        consentCheck.checked = true;
-        setFormEnabled(true);
-    } else {
-        setFormEnabled(false);
-    }
+    updateSubmitState();
 
     consentCheck.addEventListener('change', () => {
-        if (consentCheck.checked) {
-            saveConsent();
-            setFormEnabled(true);
-
-            const firstField = contactForm.querySelector('input:not([type="checkbox"]), textarea');
-            if (firstField) {
-                firstField.focus();
-            }
-            return;
-        }
-
-        clearConsent();
-        setFormEnabled(false);
+        updateSubmitState();
     });
 }
 
