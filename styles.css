@@ -4036,12 +4036,12 @@ body.inner-page[data-page-id="services"] .page-hero .page-description {
     opacity: 1;
 }
 
-.contact-info-icon-email {
+.contact-page .contact-info h3 .contact-info-icon-email {
     display: inline-block;
     font-size: 1em;
     line-height: 1;
     vertical-align: -0.08em;
-    color: #f5b400;
+    color: #f5b400 !important;
 }
 
 .contact-page .kvkk-inline-note {
