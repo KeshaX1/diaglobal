@@ -9,9 +9,9 @@ services:
       - key: HOST
         value: 0.0.0.0
       - key: CONTACT_TO_EMAIL
-        value: info@dia-global.com
+        value: export@dia-global.com
       - key: CONTACT_FROM_EMAIL
-        value: info@dia-global.com
+        value: export@dia-global.com
       - key: CONTACT_FROM_NAME
         value: Dia Global
       - key: BREVO_API_KEY
